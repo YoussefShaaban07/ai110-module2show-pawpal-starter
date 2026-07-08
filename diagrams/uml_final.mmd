@@ -1,5 +1,5 @@
-%% PawPal+ system UML — kept in sync with pawpal_system.py.
-%% See uml_final.mmd for the same diagram; uml_draft.mmd holds the Phase 1 draft.
+%% PawPal+ — Phase 6 FINAL UML
+%% Matches the final implementation in pawpal_system.py.
 classDiagram
     class Owner {
         +str name
@@ -34,10 +34,12 @@ classDiagram
 
     class Scheduler {
         +Owner owner
+        +all_tasks() list~Task~
         +sort_by_time() list~Task~
         +sort_by_priority() list~Task~
         +filter_by_pet(name) list~Task~
         +filter_by_status(completed) list~Task~
+        +filter_by_priority(priority) list~Task~
         +detect_conflicts() list~str~
         +complete_task(pet, task) Task
         +todays_schedule() str
