@@ -1,46 +1,26 @@
-# PawPal+ (Module 2 Project)
+# PawPal+
 
-You are building **PawPal+**, a Streamlit app that helps a pet owner plan care tasks for their pet.
+A Streamlit app that plans a pet owner's day: it tracks care tasks across several pets, orders them by time or priority, warns about scheduling conflicts, and automatically re-creates daily and weekly tasks when they're completed.
 
-## Scenario
-
-A busy pet owner needs help staying consistent with pet care. They want an assistant that can:
-
-- Track pet care tasks (walks, feeding, meds, enrichment, grooming, etc.)
-- Consider constraints (time available, priority, owner preferences)
-- Produce a daily plan and explain why it chose that plan
-
-Your job is to design the system first (UML), then implement the logic in Python, then connect it to the Streamlit UI.
-
-## What you will build
-
-Your final app should:
-
-- Let a user enter basic owner + pet info
-- Let a user add/edit tasks (duration + priority at minimum)
-- Generate a daily schedule/plan based on constraints and priorities
-- Display the plan clearly (and ideally explain the reasoning)
-- Include tests for the most important scheduling behaviors
-
-## Getting started
-
-### Setup
+**Stack:** Python, Streamlit, pytest · **Tests:** 13 passing · Built for CodePath AI110 (Module 2), designed UML-first and then implemented and tested.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+streamlit run app.py        # the app
+python main.py              # CLI demo of the scheduling logic
+pytest                      # test suite
 ```
 
-### Suggested workflow
+## How it's built
 
-1. Read the scenario carefully and identify requirements and edge cases.
-2. Draft a UML diagram (classes, attributes, methods, relationships).
-3. Convert UML into Python class stubs (no logic yet).
-4. Implement scheduling logic in small increments.
-5. Add tests to verify key behaviors.
-6. Connect your logic to the Streamlit UI in `app.py`.
-7. Refine UML so it matches what you actually built.
+1. **Designed first:** UML class diagrams for `Owner`, `Pet`, `Task` and `Scheduler` ([draft](diagrams/uml_draft.mmd) and [final](diagrams/uml_final.mmd)).
+2. **Logic layer:** `pawpal_system.py` holds all scheduling behavior, with no UI code, so it can be tested on its own.
+3. **Tests:** a pytest suite covering sorting, filtering, recurrence and conflict edge cases.
+4. **UI:** `app.py` connects the logic layer to Streamlit through `st.session_state`, so data survives Streamlit's re-runs.
+
+Design notes and trade-offs are in [reflection.md](reflection.md).
 
 ## ✨ Features
 
